@@ -1,0 +1,23 @@
+# 112 -Path Sum
+def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+        if not root:
+            return False
+        def check(sum,x,li):
+            if not x:
+                return
+            sum+=x.val
+            if x.left:
+                check(sum,x.left,li)
+            if x.right:
+                check(sum,x.right,li)
+            if not x.left and not x.right:
+                li.append(sum)
+        sum=0
+        li=[]
+        check(sum,root,li)
+        if targetSum in li:
+            return True
+        else:
+            return False
+        
+        
