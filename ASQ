@@ -1,0 +1,24 @@
+class Solution:
+    def longestValidParentheses(self, s: str) -> int:
+        m=0
+        o=c=0
+        for i in s:
+            if i=="(":
+                o+=1
+            else:
+                c+=1
+            if o==c:
+                m=max(m,2*c)
+            elif c>o:
+                o=c=0
+        o=c=0
+        for i in reversed(s):
+            if i==")":
+                c+=1
+            else:
+                o+=1
+            if o==c:
+                m=max(m,2*o)
+            elif o>c:
+                o=c=0
+        return m
